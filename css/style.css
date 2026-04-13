@@ -1,224 +1,133 @@
-/* ==========================================================================
-   1. GLOBAL VARIABLES & RESET
-   ========================================================================== */
+/* --- SHARED VARIABLES & RESET --- */
 :root {
     --primary: #004a99;
     --accent: #f1c40f;
-    --white: #ffffff;
-    --light: #f8f9fa;
+    --light-bg: #f4f7f6;
     --text: #333;
-    --shadow: 0 4px 10px rgba(0,0,0,0.1);
+    --white: #ffffff;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text);
-    background-color: var(--light);
-    line-height: 1.6;
+body { 
+    font-family: 'Poppins', sans-serif; 
+    background-color: var(--light-bg); 
+    color: var(--text); 
+    line-height: 1.6; 
+    scroll-behavior: smooth; /* Enables smooth scrolling site-wide */
 }
 
-/* ==========================================================================
-   2. SHARED COMPONENTS (Universal)
-   ========================================================================== */
-
-/* Navigation */
+/* --- SHARED NAVIGATION --- */
 nav {
     background: var(--primary);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 8%;
-    box-shadow: var(--shadow);
+    padding: 1rem 8%;
     position: sticky;
     top: 0;
     z-index: 1000;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-weight: 600;
-}
-
-.logo img {
-    height: 50px;
-    margin-right: 15px;
-    transition: transform 0.3s;
-}
-
-.logo img:hover {
-    transform: rotate(15deg) scale(1.1);
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li { margin-left: 25px; }
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 0.95rem;
-    transition: 0.3s;
-}
-
-nav ul li a:hover, nav ul li a.active {
-    color: var(--accent);
-}
-
-/* Layout Container */
-.container {
-    padding: 60px 10%;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2rem;
-    color: var(--primary);
-}
-
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: var(--accent);
-    margin: 10px auto;
-}
-
-/* Global Button */
-.btn-main {
-    display: inline-block;
-    padding: 12px 30px;
-    background: var(--accent);
-    color: #000;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-/* Footer */
-footer {
-    background: #222;
-    color: #888;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-}
-
-/* ==========================================================================
-   3. HOME PAGE SPECIFIC
-   ========================================================================== */
-.hero {
-    background: linear-gradient(rgba(0, 74, 153, 0.7), rgba(0, 0, 0, 0.6)), url('../images/intro_bg.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-}
-
-.welcome-box {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
     box-shadow: var(--shadow);
-    text-align: center;
-    margin-bottom: 50px;
 }
 
-.intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
+.logo { 
+    display: flex; 
+    align-items: center; 
+    color: white; 
+    font-weight: 600; 
+    text-decoration: none; /* In case the logo is wrapped in an <a> tag */
 }
 
-.interactive-img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 15px 15px 0px var(--accent);
-    transition: 0.5s;
+/* Seal Styling */
+.logo img { 
+    height: 45px; 
+    width: auto;
+    margin-right: 12px; 
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* Makes the seal pop */
 }
 
-.interactive-img:hover {
-    transform: translate(-5px, -5px);
-    box-shadow: 20px 20px 0px var(--primary);
+nav ul { 
+    display: flex; 
+    list-style: none; 
 }
 
-/* ==========================================================================
-   4. ABOUT PAGE & OFFICIALS
-   ========================================================================== */
-.stats-grid {
-    display: flex;
-    justify-content: space-around;
-    background: var(--primary);
-    color: white;
-    padding: 30px;
-    border-radius: 15px;
-    margin: 30px 0;
+nav ul li { 
+    margin-left: 25px; 
 }
 
-.stat-item h4 { font-size: 2rem; color: var(--accent); }
-
-.officials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+nav ul li a { 
+    color: white; 
+    text-decoration: none; 
+    font-size: 0.95rem; 
+    font-weight: 400;
+    transition: 0.3s ease; 
 }
 
-.official-card {
-    background: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    border-bottom: 4px solid var(--accent);
-    transition: 0.3s;
+nav ul li a:hover, 
+nav ul li a.active { 
+    color: var(--accent); 
 }
 
-.official-card:hover {
+/* --- SHARED FOOTER --- */
+footer { 
+    background: #1a1a1a; 
+    color: #b0b0b0; 
+    text-align: center; 
+    padding: 40px 20px; 
+    margin-top: 50px; 
+    font-size: 0.9rem;
+    border-top: 4px solid var(--primary);
+}
+
+/* --- BACK TO TOP BUTTON --- */
+#topBtn {
+    display: none; 
+    position: fixed; 
+    bottom: 25px; 
+    right: 30px; 
+    z-index: 999;
+    background-color: var(--primary); 
+    color: white; 
+    border: none;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+#topBtn:hover {
+    background-color: var(--accent);
+    color: #333;
     transform: translateY(-5px);
-    box-shadow: var(--shadow);
 }
 
-.official-card.appointed { border-bottom-color: #95a5a6; }
+/* --- GLOBAL RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    nav { 
+        padding: 1rem 5%; 
+    }
+    
+    .logo span {
+        font-size: 0.9rem; /* Prevents text overflow on small phones */
+    }
 
-/* ==========================================================================
-   5. SERVICES & NEWS CARDS
-   ========================================================================== */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    .logo img {
+        height: 35px;
+    }
+
+    nav ul li { 
+        margin-left: 12px; 
+    }
+    
+    nav ul li a { 
+        font-size: 0.8rem; 
+    }
 }
-
-.service-card, .news-item {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-}
-
-/* ==========================================================================
-   6. ANIMATIONS
-   ========================================================================== */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.hero-content { animation: fadeInDown 1s ease; }
