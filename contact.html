@@ -2,54 +2,236 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us | Brgy. Fundacion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Brgy. Bungsuan</title>
+    <script src="js/script.js"></script>
+</body>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #004a99;
+            --accent: #f1c40f;
+            --white: #ffffff;
+            --light-bg: #f4f7f6;
+            --text: #333;
+            --danger: #e74c3c;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text); background-color: var(--light-bg); line-height: 1.6; min-height: 100vh; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1001; /* Higher than header clip-path */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .logo { display: flex; align-items: center; color: white; font-weight: 600; }
+        .logo img { height: 45px; margin-right: 12px; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: white; text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent); }
+
+        /* --- HEADER --- */
+        .contact-header {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 80px 10% 120px;
+            clip-path: ellipse(120% 100% at 50% 0%);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- CONTACT GRID --- */
+        .container { 
+            padding: 0 8% 60px; 
+            max-width: 1300px; 
+            margin: -60px auto 0; /* Pull content up over the header */
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adaptive columns */
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Form Styling */
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary); font-size: 0.85rem; text-transform: uppercase; }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #edf2f7;
+            border-radius: 12px;
+            outline: none;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(0, 74, 153, 0.05); }
+
+        .btn-main {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-main:hover { background: #003366; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* --- INFO SIDEBAR --- */
+        .contact-info { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+        }
+        .contact-info h3 { color: var(--primary); margin-bottom: 25px; border-left: 5px solid var(--accent); padding-left: 15px; font-size: 1.4rem; }
+
+        .emergency-list { margin-bottom: 30px; }
+        .emergency-item { 
+            background: #fffafa; 
+            border: 1px solid #ffebeb;
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition);
+        }
+        .emergency-item:hover { transform: scale(1.02); background: #fff; border-color: var(--danger); }
+        .emergency-item span { font-size: 1.8rem; }
+        .emergency-item strong { color: var(--danger); font-size: 0.85rem; text-transform: uppercase; display: block; }
+        .emergency-item p { font-weight: 600; color: #222; font-size: 1.1rem; }
+
+        .primary-care-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .pill { background: #f0f4f8; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; color: var(--primary); border: 1px solid #d1dce5; }
+
+        .address-box { margin-top: 35px; padding-top: 25px; border-top: 1px solid #eee; }
+        .address-box p { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #666; font-size: 0.95rem; }
+
+        footer { background: #222; color: #888; text-align: center; padding: 30px; margin-top: auto; }
+
+        /* --- FIX OVERLAP FOR MOBILE --- */
+        @media (max-width: 768px) {
+            .container { margin-top: -40px; padding: 0 5% 40px; }
+            .contact-header { padding: 60px 5% 100px; }
+            .contact-grid { grid-template-columns: 1fr; } /* Stack vertically */
+            .contact-form, .contact-info { padding: 25px; }
+        }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-content">
-        <img src="logo.png" alt="Barangay Fundacion Logo" class="main-logo">
-        <div class="header-text">
-            <h1>Barangay Fundacion</h1>
-            <p>Official Information Portal | Dueñas, Iloilo</p>
-        </div>
-    </div>
-</header>
+
     <nav>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="news.html">News</a>
-            <a href="contact.html">Contact</a>
-            </div>
-        <div class="nav-search">
-            <input type="text" placeholder="Search services..." style="margin:0; padding:5px 10px; width:150px; border-radius:15px; border:none;">
+        <div class="logo">
+            <img src="images/logo.png" alt="Bungsuan Seal"> 
+            <span>Brgy. Bungsuan</span>
         </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
     </nav>
 
-    <div class="container">
-        <h2>Get in Touch</h2>
-        <p><strong>Address:</strong> Barangay Fundacion, Dueñas, Iloilo, Philippines</p>
-        
-        <form id="contactForm">
-            <label>Name:</label>
-            <input type="text" placeholder="Your Name" required>
-            
-            <label>Email:</label>
-            <input type="email" placeholder="Your Email" required>
-            
-            <label>Message:</label>
-            <textarea rows="5" placeholder="How can we help you?"></textarea>
-            
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
-<footer>
-    <img src="logo.png" alt="Brgy Logo" class="footer-logo">
-    <p>&copy; 2026 Barangay Fundacion. All Rights Reserved.</p>
-    <p>Unity • Transparency • Progress</p>
-</footer>
+    <header class="contact-header">
+        <h1>Contact & Support</h1>
+        <p>Your safety and health are our priority. Reach out anytime.</p>
+    </header>
+
+    <main class="container">
+        <div class="contact-grid">
+            <div class="contact-form">
+                <form id="brgyForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" placeholder="Juan Dela Cruz" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email" placeholder="email@address.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message / Inquiry</label>
+                        <textarea id="message" rows="6" placeholder="How can we help the community today?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-main" id="submitBtn">Send Message 🚀</button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <h3>Emergency Hotlines</h3>
+                
+                <div class="emergency-list">
+                    <div class="emergency-item">
+                        <span>🚑</span>
+                        <div><strong>Emergency Response Team</strong><p>0928 540 6011</p></div>
+                    </div>
+                    <div class="emergency-item">
+                        <span>🏥</span>
+                        <div><strong>Health Center</strong><p>0925 987 6543</p></div>
+                    </div>
+                    <div class="emergency-item">
+                        <span>🚒</span>
+                        <div><strong>Fire Station</strong><p>0963 030 4777</p></div>
+                    </div>
+                    <div class="emergency-item">
+                        <span>👮</span>
+                        <div><strong>Police Station</strong><p>0947 468 9925 / 911</p></div>
+                    </div>
+                </div>
+
+                <h3>Primary Care Facilities</h3>
+                <div class="primary-care-pills">
+                    <span class="pill">0910 523 4278</span>
+                    <span class="pill">0910 526 1561</span>
+                    <span class="pill">0947 641 2847</span>
+                    <span class="pill">0995 497 1829</span>
+                </div>
+
+                <div class="address-box">
+                    <p>📍 Barangay Bungsuan, Dumarao, Capiz</p>
+                    <p>✉️ contact@bungsuan.gov.ph</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Barangay Bungsuan, Dumarao, Capiz. All Rights Reserved.</p>
+    </footer>
+
+
 </body>
 </html>

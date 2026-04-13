@@ -3,47 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Brgy. Fundacion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Brgy. Bungsuan | Official Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <img src="logo.png" alt="Barangay Fundacion Logo" class="main-logo">
-            <div class="header-text">
-                <h1>Barangay Fundacion</h1>
-                <p>Official Information Portal | Dueñas, Iloilo</p>
-            </div>
+    <nav>
+        <div class="logo">
+            <img src="images/logo.png" alt="Bungsuan Seal"> 
+            <span>Brgy. Bungsuan</span>
+        </div>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Barangay Bungsuan</h1>
+            <p>Dumarao, Capiz | "The Maisan sang Banwa"</p>
+            <a href="#intro" class="btn-main">Explore Our Community</a>
         </div>
     </header>
 
-    <nav>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="news.html">News</a>
-            <a href="contact.html">Contact</a>
-            </div>
-        <div class="nav-search">
-            <input type="text" placeholder="Search services..." style="margin:0; padding:5px 10px; width:150px; border-radius:15px; border:none;">
+    <section id="intro" class="container">
+        <div class="welcome-box">
+            <h2>Mabinuligon nga Pag-abot!</h2>
+            <p class="lead">"Welcome to Barangay Bungsuan, Dumarao, Capiz! We are delighted to welcome you to our humble and vibrant community. Here in our barangay, we value unity, respect, and cooperation among our residents. Whether you are visiting or planning to stay, we hope you will feel the warmth, friendliness, and hospitality of our people. Together, let us build a peaceful, progressive, and harmonious community where everyone feels safe and at home."</p>
         </div>
-    </nav>
-
-    <div class="container">
-        <h2>Welcome Message</h2>
-        <p>Welcome to the official website of Barangay Fundacion. We are committed to serving our community with transparency, unity, and dedication. This website is created to provide easy access to information, services, and announcements for all residents.</p>
         
-        <br>
-        <h2>Brief Introduction</h2>
-        <p>Barangay Fundacion is a peaceful and progressive community located in Dueñas. Our barangay works hand in hand with residents to promote safety, development, and unity. Through this website, we aim to keep everyone informed about programs, services, and important updates.</p>
-    </div>
+        <div class="intro-grid">
+            <div class="intro-text">
+                <h3>About Our Community</h3>
+                <p>Barangay Bungsuan is one of the peaceful and growing communities in the Municipality of Dumarao. Known for its warm and welcoming residents, the barangay reflects the true spirit of <strong>Bayanihan</strong>.</p>
+            </div>
+            <div class="intro-image">
+                <img src="images/intro_bg.jpg" alt="Bungsuan Landscape" class="interactive-img">
+            </div>
+        </div>
+    </section>
 
-<footer>
-    <img src="logo.png" alt="Brgy Logo" class="footer-logo">
-    <p>&copy; 2026 Barangay Fundacion. All Rights Reserved.</p>
-    <p>Unity • Transparency • Progress</p>
-</footer>
+    <footer>
+        <p>&copy; 2026 Barangay Bungsuan, Dumarao, Capiz. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>

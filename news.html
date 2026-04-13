@@ -2,56 +2,243 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>News | Brgy. Fundacion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Updates | Brgy. Bungsuan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #004a99;
+            --accent: #f1c40f;
+            --light-bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+            --agri: #27ae60;
+            --health: #e74c3c;
+            --env: #2980b9;
+            --safety: #e67e22;
+            --gov: #8e44ad;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--light-bg); color: var(--text); line-height: 1.6; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .logo { display: flex; align-items: center; color: white; font-weight: 600; }
+        .logo img { height: 45px; margin-right: 12px; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: white; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent); }
+
+        /* --- PAGE HEADER --- */
+        .news-header {
+            background: linear-gradient(rgba(0, 74, 153, 0.8), rgba(0, 74, 153, 0.8)), url('images/intro_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 10%;
+        }
+
+        /* --- NEWS LIST SECTION --- */
+        .container { padding: 60px 10%; max-width: 1000px; margin: auto; }
+        
+        .news-list {
+            position: relative;
+            border-left: 3px solid #ddd;
+            padding-left: 30px;
+            margin-left: 20px;
+        }
+
+        .news-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        /* The Timeline Circle */
+        .news-item::before {
+            content: '';
+            position: absolute;
+            left: -43px;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .news-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,74,153,0.1);
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .news-img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-item:hover .news-img {
+            transform: scale(1.02);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .badge-env { background: var(--env); }
+        .badge-safety { background: var(--safety); }
+        .badge-gov { background: var(--gov); }
+
+        .news-item h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .news-item p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Facebook CTA */
+        .fb-cta {
+            text-align: center;
+            padding: 40px;
+            background: var(--white);
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        
+        .fb-button {
+            display: inline-block;
+            background: #1877F2;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        
+        .fb-button:hover {
+            background: #145dbf;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer { background: #222; color: #888; text-align: center; padding: 25px; margin-top: 50px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 40px 5%; }
+            .news-list { margin-left: 10px; }
+            .news-item::before { left: -23px; }
+        }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-content">
-        <img src="logo.png" alt="Barangay Fundacion Logo" class="main-logo">
-        <div class="header-text">
-            <h1>Barangay Fundacion</h1>
-            <p>Official Information Portal | Dueñas, Iloilo</p>
-        </div>
-    </div>
-</header>
+
     <nav>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="news.html">News</a>
-            <a href="contact.html">Contact</a>
-            </div>
-        <div class="nav-search">
-            <input type="text" placeholder="Search services..." style="margin:0; padding:5px 10px; width:150px; border-radius:15px; border:none;">
+        <div class="logo">
+            <img src="images/logo.png" alt="Bungsuan Seal"> 
+            <span>Brgy. Bungsuan</span>
         </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="news.html" class="active">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
-    <div class="container">
-        <div class="announcement">
-            <h3>Clean-Up Drive 2026</h3>
-            <small>Date: April 10, 2026</small>
-            <p>We encourage all residents to participate in our barangay clean-up drive this Saturday at 6:00 AM. Please bring cleaning tools.</p>
-        </div>
+    <header class="news-header">
+        <h1>Latest News & Announcements</h1>
+        <p>Stay updated with the happenings in the "Corn Capital" of Dumarao.</p>
+    </header>
 
-        <div class="announcement">
-            <h3>Free Medical Check-Up</h3>
-            <small>Date: April 15, 2026</small>
-            <p>There will be a free medical check-up at the Barangay Hall from 8:00 AM to 3:00 PM. Open for all residents.</p>
-        </div>
+    <main class="container">
+        <div class="news-list">
+            
+            <!-- NEWS 1 -->
+            <article class="news-item">
+                <div class="news-date">April 13, 2026</div>
+                <span class="badge badge-env">Environment</span>
+                <h3>Keeping Our Roads Clear and Safe</h3>
+                <p>Ensuring smooth travels for every Bungsuanon! Our dedicated team, headed by Punong Barangay Nicolas S. Hare along with the Sangguniang Barangay, SK, and our hardworking Tanods, hit the streets for a massive Road Clearing Operation. By removing obstructions, we're making our community safer and more accessible for everyone.</p>
+                <img src="news1.jpg" alt="Road Clearing Operation in Bungsuan" class="news-img">
+            </article>
 
-        <div class="announcement">
-            <h3>Youth Sports Program Registration</h3>
-            <small>Date: April 20, 2026</small>
-            <p>Registration for the Youth Sports Program is now open. Interested participants may register at the Barangay Office.</p>
+            <!-- NEWS 2 -->
+            <article class="news-item">
+                <div class="news-date">April 12, 2026</div>
+                <span class="badge badge-safety">Public Safety</span>
+                <h3>Duck, Cover, and Hold: Earthquake Drill 2026</h3>
+                <p>Preparedness is our best defense! The Bungsuan Barangay Hall turned into a training ground as we conducted a simultaneous earthquake drill. Led by Punong Barangay Nick Hare and BDRRM Chair Sunday Rabin, the team practiced life-saving maneuvers to ensure that when the ground shakes, Bungsuan stands firm and ready.</p>
+                <img src="news2.jpg" alt="Earthquake Drill at Barangay Hall" class="news-img">
+            </article>
+
+            <!-- NEWS 3 -->
+            <article class="news-item">
+                <div class="news-date">April 11, 2026</div>
+                <span class="badge badge-gov">Governance</span>
+                <h3>Planning for a Resilient Future</h3>
+                <p>Action meets strategy! The Barangay Bungsuan Council recently completed an intensive 3-day Contingency Planning Workshop at the Dumarao Sports Complex. Our leaders worked tirelessly to craft robust response plans for any situation, ensuring that the heart of Dumarao remains resilient, organized, and always one step ahead.</p>
+                <img src="news3.jpg" alt="Contingency Planning Workshop in Dumarao" class="news-img">
+            </article>
+
+            <!-- Facebook CTA -->
+            <section class="fb-cta">
+                <h3>Want more updates?</h3>
+                <p>For the latest announcements and more photos of our community activities, follow our official Facebook page.</p>
+                <a href="https://www.facebook.com/people/Bungsuan-Dumarao-Capiz/61562222910428/" class="fb-button" target="_blank">Follow us on Facebook</a>
+            </section>
+
         </div>
-    </div>
-<footer>
-    <img src="logo.png" alt="Brgy Logo" class="footer-logo">
-    <p>&copy; 2026 Barangay Fundacion. All Rights Reserved.</p>
-    <p>Unity • Transparency • Progress</p>
-</footer>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Barangay Bungsuan, Dumarao, Capiz. All Rights Reserved.</p>
+    </footer>
+
 </body>
 </html>

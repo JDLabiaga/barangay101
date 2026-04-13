@@ -2,61 +2,330 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Us | Brgy. Fundacion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Brgy. Bungsuan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #004a99;
+            --accent: #f1c40f;
+            --white: #ffffff;
+            --light-bg: #f0f4f8;
+            --text: #2d3436;
+            --grad: linear-gradient(135deg, #004a99 0%, #002d5f 100%);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text); background-color: var(--light-bg); line-height: 1.7; overflow-x: hidden; }
+
+        /* --- MODERN NAVIGATION --- */
+        nav {
+            background: rgba(0, 74, 153, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+        .logo { display: flex; align-items: center; color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .logo img { height: 45px; margin-right: 12px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.85rem; font-weight: 400; transition: var(--transition); position: relative; padding: 5px 0; }
+        nav ul li a::after { content: ''; width: 0; height: 2px; background: var(--accent); position: absolute; bottom: 0; left: 0; transition: 0.3s; }
+        nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent); }
+
+        /* --- HERO SECTION --- */
+        .about-hero {
+            background: var(--grad);
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+            margin-bottom: -50px;
+        }
+
+        /* --- CONTENT CONTAINERS --- */
+        .container { padding: 80px 10%; max-width: 1400px; margin: auto; }
+        
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary); }
+        .underline { width: 60px; height: 5px; background: var(--accent); margin: 15px auto; border-radius: 10px; }
+
+        /* --- INTERACTIVE HISTORY CARD --- */
+        .history-card {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .history-text p { margin-bottom: 25px; font-size: 1.05rem; color: #444; }
+        .history-text strong { color: var(--primary); }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .stat-box {
+            background: #f8fafd;
+            padding: 25px 15px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #e1e8f0;
+            transition: var(--transition);
+        }
+        .stat-box:hover { background: var(--white); border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .stat-box h4 { font-size: 1.8rem; color: var(--primary); }
+        .stat-box p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #777; }
+
+        /* --- VISION & MISSION GLASS CARDS --- */
+        .vm-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+        .vm-card {
+            background: white;
+            padding: 45px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 5px solid var(--primary);
+        }
+        .vm-card::before { content: ''; position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(0,74,153,0.03); border-radius: 50%; }
+        .vm-card h3 { color: var(--primary); margin-bottom: 20px; font-size: 1.6rem; display: flex; align-items: center; gap: 10px; }
+        .vm-card li { margin-bottom: 12px; list-style: none; display: flex; align-items: flex-start; gap: 10px; }
+        .vm-card li::before { content: '✦'; color: var(--accent); font-weight: bold; }
+
+        /* --- OFFICIALS: MASONRY STYLE --- */
+        .council-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .captain-row { margin-bottom: 40px; width: 100%; display: flex; justify-content: center; }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        .official-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .official-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        
+        .img-circle {
+            width: 110px;
+            height: 110px;
+            background: #f0f2f5;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 4px solid var(--light-bg);
+            transition: 0.3s;
+        }
+        .official-card:hover .img-circle { border-color: var(--accent); background: var(--primary); color: white; }
+
+        .official-card h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 5px; }
+        .official-card p { color: #888; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
+
+        /* Special Captain Style */
+        .captain-card {
+            background: var(--grad);
+            color: white;
+            width: 380px;
+        }
+        .captain-card h4 { color: var(--accent); font-size: 1.4rem; }
+        .captain-card p { color: rgba(255,255,255,0.7); }
+
+        footer { background: #1a1a1a; color: #666; text-align: center; padding: 40px; margin-top: 100px; font-size: 0.9rem; }
+
+        @media (max-width: 992px) {
+            .history-card, .vm-section { grid-template-columns: 1fr; }
+            .history-card { padding: 30px; }
+        }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-content">
-        <img src="logo.png" alt="Barangay Fundacion Logo" class="main-logo">
-        <div class="header-text">
-            <h1>Barangay Fundacion</h1>
-            <p>Official Information Portal | Dueñas, Iloilo</p>
-        </div>
-    </div>
-</header>
+
     <nav>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="news.html">News</a>
-            <a href="contact.html">Contact</a>
-            </div>
-        <div class="nav-search">
-            <input type="text" placeholder="Search services..." style="margin:0; padding:5px 10px; width:150px; border-radius:15px; border:none;">
+        <div class="logo">
+            <img src="images/logo.png" alt="Bungsuan Seal"> 
+            <span>Brgy. Bungsuan</span>
         </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
-    <div class="container">
-        <h2>History</h2>
-        <p>Barangay Fundacion was established in 1985. It started as a small farming community and gradually developed into a growing residential area. Through strong leadership and cooperation among residents, the barangay continues to improve its facilities and services.</p>
+    <header class="about-hero">
+        <h1 data-aos="fade-down">Our Story & Leadership</h1>
+        <p data-aos="fade-up" data-aos-delay="200">The Heartland of Dumarao, Capiz</p>
+    </header>
 
-        <h2>Vision</h2>
-        <p>To become a safe, organized, and progressive barangay that promotes unity, transparency, and sustainable development.</p>
+    <main class="container">
+        
+        <section class="history-card" data-aos="fade-up">
+            <div class="history-text">
+                <div class="section-header" style="text-align: left;">
+                    <h2>Our Heritage</h2>
+                    <div class="underline" style="margin-left: 0;"></div>
+                </div>
+                <p>Formerly known as <strong>Barrio Site</strong>, our community served as the vital central hub for surrounding Sitios. History tells us that the name <strong>“Bungsuan”</strong> was born from the collision of nature.</p>
+                <p>Derived from the Hiligaynon words <em>“Bunggo”</em> or <em>“Bungsu”</em>, it describes the point where the powerful <strong>Badbaran River</strong> crashes against the massive rock formations that define our borders.</p>
+                <p>Today, we stand proud as an urbanized upland community, celebrated as the <strong>“Maisan sang Banwa”</strong> for our golden corn fields that sustain our town.</p>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="300">
+                    <h4>5,057</h4>
+                    <p>Residents</p>
+                </div>
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="400">
+                    <h4>1,356</h4>
+                    <p>Total Hectares</p>
+                </div>
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="500">
+                    <h4>83.6%</h4>
+                    <p>Farming Land</p>
+                </div>
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="600">
+                    <h4>1956</h4>
+                    <p>Year Founded</p>
+                </div>
+            </div>
+        </section>
 
-        <h2>Mission</h2>
-        <p>To provide quality public service, maintain peace and order, promote community participation, and implement programs that improve the quality of life of residents.</p>
+        <section class="vm-section">
+            <div class="vm-card" data-aos="fade-right">
+                <h3>Our Vision</h3>
+                <p>To be the premier corn producer in the region, fostered by a God-fearing community and dynamic leaders who maintain a safe, vibrant, and eco-friendly home for every citizen.</p>
+            </div>
+            <div class="vm-card" data-aos="fade-left">
+                <h3>Our Mission</h3>
+                <ul>
+                    <li>Drive sustainable agricultural growth.</li>
+                    <li>Build a competitive local economy for all.</li>
+                    <li>Ensure a safe, clean, and green environment.</li>
+                    <li>Empower transparent and trustworthy leadership.</li>
+                </ul>
+            </div>
+        </section>
 
-        <h2>Barangay Officials</h2>
-        <ul class="official-list">
-            <li><strong>Barangay Captain:</strong> Ronelo Collado</li>
-            <li><strong>Kagawad:</strong> Rex Gonzales</li>
-            <li><strong>Kagawad:</strong> Allan Bocatija</li>
-            <li><strong>Kagawad:</strong> Florenzia Macaya</li>
-            <li><strong>Kagawad:</strong> Reynoso Casiple</li>
-            <li><strong>Kagawad:</strong> Frelita Macaya</li>
-            <li><strong>Kagawad:</strong> Alejandro Lustica</li>
-            <li><strong>Kagawad:</strong> Ronnie Lopez</li>
-            <li><strong>Secretary:</strong> Catherine Labagnao</li>
-            <li><strong>Treasurer:</strong> Riza Mae Constentino</li>
-        </ul>
-    </div>
-<footer>
-    <img src="logo.png" alt="Brgy Logo" class="footer-logo">
-    <p>&copy; 2026 Barangay Fundacion. All Rights Reserved.</p>
-    <p>Unity • Transparency • Progress</p>
-</footer>
+        <section class="section-header" data-aos="fade-up">
+            <h2>The Barangay Council</h2>
+            <p>Dedicated leaders serving the term 2023 - Present</p>
+            <div class="underline"></div>
+        </section>
+
+        <div class="council-wrapper">
+            <div class="captain-row" data-aos="zoom-in">
+                <div class="official-card captain-card">
+                    <div class="img-circle">👤</div>
+                    <h4>Hon. Nicholas Hare</h4>
+                    <p>Punong Barangay</p>
+                </div>
+            </div>
+
+            <div class="members-grid">
+                <div class="official-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="img-circle">👤</div>
+                    <h4>Roberto Hinguillio</h4>
+                    <p>Barangay Kagawad</p>
+                </div>
+                <div class="official-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="img-circle">👤</div>
+                    <h4>Leomer Hadcan</h4>
+                    <p>Barangay Kagawad</p>
+                </div>
+                <div class="official-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="img-circle">👤</div>
+                    <h4>Sunday Rabin</h4>
+                    <p>Barangay Kagawad</p>
+                </div>
+                <div class="official-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="img-circle">👤</div>
+                    <h4>Susana Pedroso</h4>
+                    <p>Barangay Kagawad</p>
+                </div>
+                <div class="official-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="img-circle">👤</div>
+                    <h4>Ivy Morente</h4>
+                    <p>Barangay Kagawad</p>
+                </div>
+                <div class="official-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="img-circle">👤</div>
+                    <h4>Hanilito Jaspe</h4>
+                    <p>Barangay Kagawad</p>
+                </div>
+            </div>
+
+            <div class="members-grid" style="margin-top: 25px; justify-content: center;">
+                 <div class="official-card" style="border-top: 4px solid #95a5a6;" data-aos="fade-up">
+                    <div class="img-circle">📋</div>
+                    <h4>Carina Capuso</h4>
+                    <p>Barangay Secretary</p>
+                </div>
+                <div class="official-card" style="border-top: 4px solid #95a5a6;" data-aos="fade-up">
+                    <div class="img-circle">💰</div>
+                    <h4>Jhon Rey Laureano</h4>
+                    <p>Barangay Treasurer</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Barangay Bungsuan Portal. All Rights Reserved.</p>
+        <p style="font-size: 0.7rem; margin-top: 10px; color: #444;">Dumarao, Capiz, Philippines</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 </body>
 </html>

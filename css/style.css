@@ -1,0 +1,224 @@
+/* ==========================================================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================================================== */
+:root {
+    --primary: #004a99;
+    --accent: #f1c40f;
+    --white: #ffffff;
+    --light: #f8f9fa;
+    --text: #333;
+    --shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    background-color: var(--light);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. SHARED COMPONENTS (Universal)
+   ========================================================================== */
+
+/* Navigation */
+nav {
+    background: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 8%;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+    transition: transform 0.3s;
+}
+
+.logo img:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li { margin-left: 25px; }
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: var(--accent);
+}
+
+/* Layout Container */
+.container {
+    padding: 60px 10%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    margin: 10px auto;
+}
+
+/* Global Button */
+.btn-main {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--accent);
+    color: #000;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* ==========================================================================
+   3. HOME PAGE SPECIFIC
+   ========================================================================== */
+.hero {
+    background: linear-gradient(rgba(0, 74, 153, 0.7), rgba(0, 0, 0, 0.6)), url('../images/intro_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.welcome-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.interactive-img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 15px 15px 0px var(--accent);
+    transition: 0.5s;
+}
+
+.interactive-img:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 20px 20px 0px var(--primary);
+}
+
+/* ==========================================================================
+   4. ABOUT PAGE & OFFICIALS
+   ========================================================================== */
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    background: var(--primary);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 30px 0;
+}
+
+.stat-item h4 { font-size: 2rem; color: var(--accent); }
+
+.officials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.official-card {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    border-bottom: 4px solid var(--accent);
+    transition: 0.3s;
+}
+
+.official-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.official-card.appointed { border-bottom-color: #95a5a6; }
+
+/* ==========================================================================
+   5. SERVICES & NEWS CARDS
+   ========================================================================== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.service-card, .news-item {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+/* ==========================================================================
+   6. ANIMATIONS
+   ========================================================================== */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content { animation: fadeInDown 1s ease; }
