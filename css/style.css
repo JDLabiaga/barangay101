@@ -1,4 +1,20 @@
 /* --- SHARED VARIABLES & RESET --- */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Critical: Stops the white side-space */
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    max-width: 100%; /* Prevents elements from pushing past the screen width */
+}
+
 :root {
     --primary: #004a99;
     --accent: #f1c40f;
@@ -8,22 +24,17 @@
     --shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-}
-
 body { 
     font-family: 'Poppins', sans-serif; 
     background-color: var(--light-bg); 
     color: var(--text); 
     line-height: 1.6; 
-    scroll-behavior: smooth; /* Enables smooth scrolling site-wide */
+    scroll-behavior: smooth;
 }
 
 /* --- SHARED NAVIGATION --- */
 nav {
+    width: 100%;
     background: var(--primary);
     display: flex;
     justify-content: space-between;
@@ -33,6 +44,7 @@ nav {
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow);
+    flex-wrap: wrap; /* Allows menu to wrap on small screens */
 }
 
 .logo { 
@@ -40,20 +52,19 @@ nav {
     align-items: center; 
     color: white; 
     font-weight: 600; 
-    text-decoration: none; /* In case the logo is wrapped in an <a> tag */
+    text-decoration: none;
 }
 
-/* Seal Styling */
 .logo img { 
     height: 45px; 
     width: auto;
     margin-right: 12px; 
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* Makes the seal pop */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 nav ul { 
     display: flex; 
-    list-style: none; 
+    list-style: none;
 }
 
 nav ul li { 
@@ -64,7 +75,6 @@ nav ul li a {
     color: white; 
     text-decoration: none; 
     font-size: 0.95rem; 
-    font-weight: 400;
     transition: 0.3s ease; 
 }
 
@@ -80,7 +90,6 @@ footer {
     text-align: center; 
     padding: 40px 20px; 
     margin-top: 50px; 
-    font-size: 0.9rem;
     border-top: 4px solid var(--primary);
 }
 
@@ -98,36 +107,32 @@ footer {
     height: 50px; 
     border-radius: 50%; 
     cursor: pointer;
-    font-size: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;
-}
-
-#topBtn:hover {
-    background-color: var(--accent);
-    color: #333;
-    transform: translateY(-5px);
 }
 
 /* --- GLOBAL RESPONSIVENESS --- */
 @media (max-width: 768px) {
     nav { 
         padding: 1rem 5%; 
+        justify-content: center; /* Centers logo and links on mobile */
     }
     
-    .logo span {
-        font-size: 0.9rem; /* Prevents text overflow on small phones */
-    }
-
-    .logo img {
-        height: 35px;
+    nav ul {
+        width: 100%; /* Forces links to a new line */
+        justify-content: center;
+        margin-top: 15px;
+        flex-wrap: wrap; /* Ensures all 5 links stay visible */
     }
 
     nav ul li { 
-        margin-left: 12px; 
+        margin: 5px 10px; /* Better spacing for finger-tapping */
     }
-    
-    nav ul li a { 
-        font-size: 0.8rem; 
+
+    .logo span {
+        font-size: 1rem;
+    }
+
+    .logo img {
+        height: 38px;
     }
 }
